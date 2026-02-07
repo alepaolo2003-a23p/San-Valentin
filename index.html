@@ -54,12 +54,12 @@
             padding: 10px; font-size: 0.9rem; font-weight: bold;
         }
 
-        /* Área de botones - CORREGIDA */
+        /* Área de botones */
         .buttons-area {
             display: flex; justify-content: center; align-items: center;
             margin-top: 20px;
             position: relative;
-            width: 100%; height: 100px; /* Altura suficiente */
+            width: 100%; height: 100px;
         }
         
         button {
@@ -73,23 +73,26 @@
         #btnSi { 
             background: var(--main-red); color: white; 
             z-index: 10; 
-            margin-right: 10px; /* Un poco de espacio a la derecha */
+            margin-right: 10px;
         }
         
         #btnNo { 
             background: #6c757d; color: white; 
             z-index: 20; 
-            /* POSICIÓN ABSOLUTA INICIAL PARA QUE SIEMPRE SE VEA */
             position: absolute; 
-            right: 10%; /* Lo pegamos a la derecha */
+            right: 10%;
         }
 
-        /* Pantalla Final */
+        /* Pantalla Final - IMAGEN CORREGIDA AQUÍ */
         #final { display: none; animation: fadeIn 1s ease-in; }
         #final img { 
-            width: 100%; max-width: 320px; height: auto; 
-            border-radius: 15px; margin: 15px 0; 
+            width: auto; /* Ya no fuerza el 100% de ancho */
+            max-width: 90%; /* Asegura que no se salga de la tarjeta */
+            height: auto; /* Mantiene la proporción */
+            max-height: 300px; /* LIMITA LA ALTURA PARA QUE NO SEA GIGANTE EN MÓVIL */
+            border-radius: 15px; margin: 15px auto; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: block; /* Para centrarla */
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -133,7 +136,7 @@
         </div>
     </div>
 
-    <iframe style="display:none" src="https://open.spotify.com/embed/track/6habFbeZio7v7OAK6o9zX6?utm_source=generator&autoplay=1" allow="autoplay"></iframe>
+    <iframe style="display:none" src="https://open.spotify.com/embed/track/TU_ID_DE_CANCION_AQUI?utm_source=generator&theme=0&autoplay=1" allow="autoplay"></iframe>
 
     <script>
         const btnNo = document.getElementById('btnNo');
@@ -152,32 +155,20 @@
 
         // LÓGICA DEL BOTÓN QUE ESCAPA
         function huir() {
-            // Si es la primera vez, cambiamos a fixed para que se mueva por toda la pantalla
             if (!movido) {
                 btnNo.style.position = 'fixed';
                 movido = true;
             }
-            
-            // Calculamos posición aleatoria segura (restando tamaño del botón)
             const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 20);
             const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 20);
-            
             btnNo.style.left = `${Math.max(10, x)}px`;
             btnNo.style.top = `${Math.max(10, y)}px`;
-
-            // Crecer botón Sí
             escalaSi += 0.4;
             btnSi.style.transform = `scale(${escalaSi})`;
         }
 
-        // Eventos para Desktop y Móvil
         btnNo.addEventListener('mouseover', huir);
-        
-        // Importante para celular: touchstart evita que alcance a hacer click
-        btnNo.addEventListener('touchstart', (e) => { 
-            e.preventDefault(); 
-            huir(); 
-        });
+        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); huir(); });
 
         btnSi.addEventListener('click', () => {
             document.getElementById('intro').style.display = 'none';
