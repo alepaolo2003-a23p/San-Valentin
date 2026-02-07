@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Naomy ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap');
 
         :root {
             --pink-bg: #ffeef2;
@@ -16,58 +16,80 @@
         body {
             margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;
             min-height: 100vh; background-color: var(--pink-bg);
-            font-family: 'Quicksand', sans-serif; overflow-x: hidden; text-align: center;
+            font-family: 'Quicksand', sans-serif; overflow: hidden; text-align: center;
         }
 
-        /* Lluvia de corazones de fondo */
+        /* Lluvia de corazones */
         .heart {
             position: fixed; top: -10%; font-size: 20px;
             animation: fall 4s linear infinite; z-index: 0;
+            color: #ff4d6d;
         }
         @keyframes fall { to { transform: translateY(110vh); } }
 
         .card {
-            background: rgba(255, 255, 255, 0.95); padding: 25px;
+            background: rgba(255, 255, 255, 0.95); padding: 20px;
             border-radius: 30px; box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
             z-index: 10; max-width: 450px; width: 90%; position: relative;
+            border: 2px solid #fff;
         }
 
         h1 { font-family: 'Dancing Script', cursive; color: var(--dark-red); font-size: 2.2rem; margin: 10px 0; }
+        p { font-size: 1.1rem; color: #555; margin: 10px 0; }
 
-        /* Carrusel con todas tus 11 fotos */
+        /* Carrusel */
         .slider-container {
-            width: 100%; height: 380px; border-radius: 20px;
+            width: 100%; height: 320px; border-radius: 20px;
             overflow: hidden; margin-bottom: 20px; position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #000; /* Fondo negro para evitar espacios blancos */
         }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; }
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
+        
         .caption {
             position: absolute; bottom: 0; left: 0; right: 0;
-            background: rgba(0, 0, 0, 0.6); color: white;
-            padding: 12px; font-size: 0.9rem; font-weight: 500;
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.7); color: white;
+            padding: 10px; font-size: 0.9rem; font-weight: bold;
         }
 
-        /* Área de interacción */
+        /* Área de botones rediseñada para asegurar visibilidad */
         .buttons-area {
             display: flex; justify-content: center; align-items: center;
-            gap: 20px; min-height: 150px; position: relative;
+            gap: 15px; margin-top: 20px;
+            position: relative;
+            width: 100%;
+            height: 80px; /* Altura fija para evitar saltos */
         }
         
         button {
             padding: 15px 30px; font-size: 1.2rem; border: none;
-            border-radius: 50px; cursor: pointer; transition: transform 0.2s ease;
-            font-weight: bold;
+            border-radius: 50px; cursor: pointer; font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            white-space: nowrap; /* Evita que el texto se rompa */
         }
 
-        #btnSi { background: var(--main-red); color: white; z-index: 100; position: relative; }
-        #btnNo { background: #adb5bd; color: white; position: relative; z-index: 100; transition: 0.1s; }
+        #btnSi { 
+            background: var(--main-red); color: white; 
+            z-index: 10; /* Asegura que esté sobre otros elementos */
+        }
+        
+        #btnNo { 
+            background: #6c757d; color: white; 
+            z-index: 10; 
+            /* Importante: Position static al inicio para que el Flexbox lo muestre bien */
+            position: static; 
+        }
 
-        /* Pantalla Final solicitada */
+        /* Pantalla Final */
         #final { display: none; animation: fadeIn 1s ease-in; }
-        #final img { width: 100%; max-width: 300px; border-radius: 15px; margin: 15px 0; }
+        #final img { 
+            width: 100%; max-width: 320px; height: auto; 
+            border-radius: 15px; margin: 15px 0; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -81,20 +103,20 @@
             <h1>Para Naomy ❤️</h1>
             
             <div class="slider-container">
-                <div class="slide active"><img src="https://i.imgur.com/Ib15e3V.jpeg"><div class="caption">Cada momento a tu lado es un regalo que atesoro. ✨</div></div>
-                <div class="slide"><img src="https://i.imgur.com/btL59OS.jpeg"><div class="caption">Amo tu sonrisa y la paz que me transmites. 😊</div></div>
-                <div class="slide"><img src="https://i.imgur.com/kmsmxtl.jpeg"><div class="caption">Gracias por ser mi compañera de aventuras. 🌎</div></div>
-                <div class="slide"><img src="https://i.imgur.com/2sLrg3E.jpeg"><div class="caption">Lo dulce de la vida es mejor si lo comparto contigo. 🍩</div></div>
-                <div class="slide"><img src="https://i.imgur.com/cZxdMWy.jpeg"><div class="caption">Eres mi persona favorita en todo el mundo. 💖</div></div>
-                <div class="slide"><img src="https://i.imgur.com/XeG7ytW.jpeg"><div class="caption">Nuestras locuras son mis recuerdos preferidos. 🤪</div></div>
+                <div class="slide active"><img src="https://i.imgur.com/Ib15e3V.jpeg"><div class="caption">Cada momento a tu lado es un regalo. ✨</div></div>
+                <div class="slide"><img src="https://i.imgur.com/btL59OS.jpeg"><div class="caption">Amo tu sonrisa y la paz que me das. 😊</div></div>
+                <div class="slide"><img src="https://i.imgur.com/kmsmxtl.jpeg"><div class="caption">Gracias por ser mi compañera. 🌎</div></div>
+                <div class="slide"><img src="https://i.imgur.com/2sLrg3E.jpeg"><div class="caption">La vida es más dulce contigo. 🍩</div></div>
+                <div class="slide"><img src="https://i.imgur.com/cZxdMWy.jpeg"><div class="caption">Eres mi persona favorita. 💖</div></div>
+                <div class="slide"><img src="https://i.imgur.com/XeG7ytW.jpeg"><div class="caption">Nuestras locuras son lo mejor. 🤪</div></div>
                 <div class="slide"><img src="https://i.imgur.com/A3UP4db.jpeg"><div class="caption">Me encanta cómo nos vemos juntos. 🔥</div></div>
-                <div class="slide"><img src="https://i.imgur.com/DXLH9x5.jpeg"><div class="caption">Por muchos años más celebrando la vida. 🥂</div></div>
+                <div class="slide"><img src="https://i.imgur.com/DXLH9x5.jpeg"><div class="caption">Por mil celebraciones más. 🥂</div></div>
                 <div class="slide"><img src="https://i.imgur.com/0VwDqls.jpeg"><div class="caption">Eres la reina de mi corazón. 👑</div></div>
-                <div class="slide"><img src="https://i.imgur.com/vhx9VaV.jpeg"><div class="caption">Mi lugar seguro siempre será entre tus brazos. 🫂</div></div>
-                <div class="slide"><img src="https://i.imgur.com/QpJLoTj.jpeg"><div class="caption">Un año y 4 meses... y esto es solo el comienzo. ❤️</div></div>
+                <div class="slide"><img src="https://i.imgur.com/vhx9VaV.jpeg"><div class="caption">Mi lugar seguro eres tú. 🫂</div></div>
+                <div class="slide"><img src="https://i.imgur.com/QpJLoTj.jpeg"><div class="caption">1 año y 4 meses... y contando. ❤️</div></div>
             </div>
 
-            <p>Sé que no estamos en el mejor momento, pero mi amor por ti no cambia. ¿Me darías el honor?</p>
+            <p>Sé que no estamos en el mejor momento, pero eso no cambia lo que siento. ¿Me darías el honor?</p>
             <h2 style="color: var(--dark-red)">¿Quieres ser mi San Valentín? 🌹</h2>
 
             <div class="buttons-area">
@@ -104,10 +126,78 @@
         </div>
 
         <div id="final">
-            <h1>¡SABÍA QUE DIRÍAS QUE SÍ, MI PRINCESA! 👑</h1>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eHBlZzB4bm9uOHZueXN0dzV4eXU1eXZ1eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZ力を&rid=giphy.gif" alt="Tiana Princesa">
-            <p>Prometo que este será un día inolvidable. Te amo demasiado, Naomy.</p>
+            <h1 style="font-size: 2rem;">¡SABÍA QUE DIRÍAS QUE SÍ, MI PRINCESA! 👑</h1>
+            <img src="https://media.giphy.com/media/26gQFZPxc9YtV8i40/giphy.gif" alt="Princesa Tiana">
+            <p>Gracias por elegirme. Te amo demasiado, Naomy. ❤️</p>
         </div>
+    </div>
+
+    <iframe style="display:none" src="http://googleusercontent.com/spotify.com/5" allow="autoplay"></iframe>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const btnSi = document.getElementById('btnSi');
+        let escalaSi = 1;
+        let movido = false; // Bandera para saber si ya se movió
+
+        // Carrusel Automático
+        const slides = document.querySelectorAll('.slide');
+        let currentIdx = 0;
+        setInterval(() => {
+            slides[currentIdx].classList.remove('active');
+            currentIdx = (currentIdx + 1) % slides.length;
+            slides[currentIdx].classList.add('active');
+        }, 3000);
+
+        // LÓGICA DEL BOTÓN QUE ESCAPA
+        function huir() {
+            // Si es la primera vez que se mueve, cambiamos a position fixed
+            if (!movido) {
+                btnNo.style.position = 'fixed';
+                movido = true;
+            }
+            
+            // Calcular nueva posición aleatoria dentro de la ventana visible
+            // Restamos el tamaño del botón para que no quede cortado en los bordes
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 20);
+            
+            btnNo.style.left = `${x}px`;
+            btnNo.style.top = `${y}px`;
+
+            // Hacer crecer el botón SI
+            escalaSi += 0.5;
+            btnSi.style.transform = `scale(${escalaSi})`;
+        }
+
+        // Eventos para PC (Mouse) y Celular (Touch)
+        btnNo.addEventListener('mouseover', huir);
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Evita el clic en celulares
+            huir();
+        });
+
+        // Al presionar el SÍ
+        btnSi.addEventListener('click', () => {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('final').style.display = 'block';
+            lanzarConfeti();
+        });
+
+        // Lluvia de corazones constante
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.classList.add('heart');
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
+        }, 300);
+
+    </script>
+</body>
+</html>
     </div>
 
     <iframe style="display:none" src="https://open.spotify.com/embed/track/6habFbeZio7v7OAK6o9zX6?utm_source=generator&autoplay=1" allow="autoplay"></iframe>
