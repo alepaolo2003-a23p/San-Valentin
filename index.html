@@ -42,7 +42,7 @@
             width: 100%; height: 320px; border-radius: 20px;
             overflow: hidden; margin-bottom: 20px; position: relative;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            background: #000; /* Fondo negro para evitar espacios blancos */
+            background: #000;
         }
         .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; }
         .slide.active { opacity: 1; }
@@ -54,13 +54,12 @@
             padding: 10px; font-size: 0.9rem; font-weight: bold;
         }
 
-        /* Área de botones rediseñada para asegurar visibilidad */
+        /* Botones */
         .buttons-area {
             display: flex; justify-content: center; align-items: center;
             gap: 15px; margin-top: 20px;
             position: relative;
-            width: 100%;
-            height: 80px; /* Altura fija para evitar saltos */
+            width: 100%; height: 80px;
         }
         
         button {
@@ -68,20 +67,11 @@
             border-radius: 50px; cursor: pointer; font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             transition: transform 0.2s;
-            white-space: nowrap; /* Evita que el texto se rompa */
+            white-space: nowrap;
         }
 
-        #btnSi { 
-            background: var(--main-red); color: white; 
-            z-index: 10; /* Asegura que esté sobre otros elementos */
-        }
-        
-        #btnNo { 
-            background: #6c757d; color: white; 
-            z-index: 10; 
-            /* Importante: Position static al inicio para que el Flexbox lo muestre bien */
-            position: static; 
-        }
+        #btnSi { background: var(--main-red); color: white; z-index: 10; }
+        #btnNo { background: #6c757d; color: white; z-index: 10; position: static; }
 
         /* Pantalla Final */
         #final { display: none; animation: fadeIn 1s ease-in; }
@@ -108,6 +98,83 @@
                 <div class="slide"><img src="https://i.imgur.com/kmsmxtl.jpeg"><div class="caption">Gracias por ser mi compañera. 🌎</div></div>
                 <div class="slide"><img src="https://i.imgur.com/2sLrg3E.jpeg"><div class="caption">La vida es más dulce contigo. 🍩</div></div>
                 <div class="slide"><img src="https://i.imgur.com/cZxdMWy.jpeg"><div class="caption">Eres mi persona favorita. 💖</div></div>
+                <div class="slide"><img src="https://i.imgur.com/XeG7ytW.jpeg"><div class="caption">Nuestras locuras son lo mejor. 🤪</div></div>
+                <div class="slide"><img src="https://i.imgur.com/A3UP4db.jpeg"><div class="caption">Me encanta cómo nos vemos juntos. 🔥</div></div>
+                <div class="slide"><img src="https://i.imgur.com/DXLH9x5.jpeg"><div class="caption">Por mil celebraciones más. 🥂</div></div>
+                <div class="slide"><img src="https://i.imgur.com/0VwDqls.jpeg"><div class="caption">Eres la reina de mi corazón. 👑</div></div>
+                <div class="slide"><img src="https://i.imgur.com/vhx9VaV.jpeg"><div class="caption">Mi lugar seguro eres tú. 🫂</div></div>
+                <div class="slide"><img src="https://i.imgur.com/QpJLoTj.jpeg"><div class="caption">1 año y 4 meses... y contando. ❤️</div></div>
+            </div>
+
+            <p>Sé que no estamos en el mejor momento, pero eso no cambia lo que siento. ¿Me darías el honor?</p>
+            <h2 style="color: var(--dark-red)">¿Quieres ser mi San Valentín? 🌹</h2>
+
+            <div class="buttons-area">
+                <button id="btnSi">¡SÍ! 😍</button>
+                <button id="btnNo">No 🥺</button>
+            </div>
+        </div>
+
+        <div id="final">
+            <h1 style="font-size: 2rem;">¡SABÍA QUE DIRÍAS QUE SÍ, MI PRINCESA! 👑</h1>
+            <img src="https://i.imgur.com/UBPhvaG.jpeg" alt="Princesa Tiana">
+            <p>Gracias por elegirme. Te amo demasiado, Naomy. ❤️</p>
+        </div>
+    </div>
+
+    <iframe style="display:none" src="https://open.spotify.com/embed/track/TU_ID_DE_CANCION_AQUI?utm_source=generator&theme=0&autoplay=1" allow="autoplay"></iframe>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const btnSi = document.getElementById('btnSi');
+        let escalaSi = 1;
+        let movido = false;
+
+        // Carrusel
+        const slides = document.querySelectorAll('.slide');
+        let currentIdx = 0;
+        setInterval(() => {
+            slides[currentIdx].classList.remove('active');
+            currentIdx = (currentIdx + 1) % slides.length;
+            slides[currentIdx].classList.add('active');
+        }, 3000);
+
+        // LÓGICA DEL BOTÓN QUE ESCAPA
+        function huir() {
+            if (!movido) {
+                btnNo.style.position = 'fixed';
+                movido = true;
+            }
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 20);
+            btnNo.style.left = `${x}px`;
+            btnNo.style.top = `${y}px`;
+            escalaSi += 0.5;
+            btnSi.style.transform = `scale(${escalaSi})`;
+        }
+
+        btnNo.addEventListener('mouseover', huir);
+        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); huir(); });
+
+        btnSi.addEventListener('click', () => {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('final').style.display = 'block';
+            lanzarConfeti();
+        });
+
+        // Lluvia de corazones
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.classList.add('heart');
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
+        }, 300);
+    </script>
+</body>
+</html>
                 <div class="slide"><img src="https://i.imgur.com/XeG7ytW.jpeg"><div class="caption">Nuestras locuras son lo mejor. 🤪</div></div>
                 <div class="slide"><img src="https://i.imgur.com/A3UP4db.jpeg"><div class="caption">Me encanta cómo nos vemos juntos. 🔥</div></div>
                 <div class="slide"><img src="https://i.imgur.com/DXLH9x5.jpeg"><div class="caption">Por mil celebraciones más. 🥂</div></div>
