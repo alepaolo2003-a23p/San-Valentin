@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Naomy ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap');
+
+        :root {
+            --pink-bg: #ffeef2;
+            --main-red: #ff4d6d;
+            --dark-red: #c9184a;
+        }
+
+        body {
+            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; background-color: var(--pink-bg);
+            font-family: 'Quicksand', sans-serif; overflow-x: hidden; text-align: center;
+        }
+
+        .heart {
+            position: fixed; top: -10%; font-size: 20px;
+            animation: fall 4s linear infinite; z-index: 0;
+        }
+
+        @keyframes fall { to { transform: translateY(110vh); } }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95); padding: 25px;
+            border-radius: 30px; box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
+            z-index: 10; max-width: 450px; width: 90%; position: relative;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; color: var(--dark-red); font-size: 2.2rem; margin: 10px 0; }
+
+        /* Carrusel Moderno */
+        .slider-container {
+            width: 100%; height: 400px; border-radius: 20px;
+            overflow: hidden; margin-bottom: 20px; position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .slide {
+            position: absolute; width: 100%; height: 100%; opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active { opacity: 1; }
+
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+
+        .caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: rgba(0, 0, 0, 0.6); color: white;
+            padding: 15px; font-size: 0.95rem; font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        .buttons { display: flex; justify-content: center; align-items: center; gap: 15px; height: 130px; position: relative; }
+        
+        button {
+            padding: 15px 30px; font-size: 1.2rem; border: none;
+            border-radius: 50px; cursor: pointer; transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        #btnSi { background: var(--main-red); color: white; z-index: 100; }
+        #btnNo { background: #adb5bd; color: white; position: absolute; }
+
+        #final { display: none; animation: fadeIn 1.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="hearts"></div>
+
+    <div class="card">
+        <div id="intro">
+            <h1>Para Naomy ❤️</h1>
+            
+            <div class="slider-container">
+                <div class="slide active">
+                    <img src="https://i.imgur.com/Ib15e3V.jpeg">
+                    <div class="caption">Cada momento a tu lado es un regalo que atesoro. ✨</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/btL59OS.jpeg">
+                    <div class="caption">Amo tu sonrisa y la paz que me transmites. 😊</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/kmsmxtl.jpeg">
+                    <div class="caption">Gracias por ser mi compañera de aventuras. 🌎</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/2sLrg3E.jpeg">
+                    <div class="caption">Lo dulce de la vida es mejor si lo comparto contigo. 🍩</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/cZxdMWy.jpeg">
+                    <div class="caption">Eres mi persona favorita en todo el mundo. 💖</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/XeG7ytW.jpeg">
+                    <div class="caption">Nuestras locuras son mis recuerdos preferidos. 🤪</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/A3UP4db.jpeg">
+                    <div class="caption">Me encanta cómo nos vemos juntos. 🔥</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/DXLH9x5.jpeg">
+                    <div class="caption">Por muchos años más celebrando la vida. 🥂</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/0VwDqls.jpeg">
+                    <div class="caption">Eres la reina de mi corazón. 👑</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/vhx9VaV.jpeg">
+                    <div class="caption">Mi lugar seguro siempre será entre tus brazos. 🫂</div>
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/QpJLoTj.jpeg">
+                    <div class="caption">Un año y 4 meses... y esto es solo el comienzo. ❤️</div>
+                </div>
+            </div>
+
+            <p>Sé que no estamos en el mejor momento, pero mi amor por ti no cambia. ¿Me darías el honor?</p>
+            <h2 style="color: var(--dark-red)">¿Quieres ser mi San Valentín?🌹</h2>
+
+            <div class="buttons">
+                <button id="btnSi">¡SÍ! 😍</button>
+                <button id="btnNo">No 🥺</button>
+            </div>
+        </div>
+
+        <div id="final">
+            <h1>¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eHBlZzB4bm9uOHZueXN0dzV4eXU1eXZ1eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZ力を&rid=giphy.gif" width="180">
+            <p>Te amo demasiado, Naomy. Gracias por elegirme una vez más.</p>
+        </div>
+    </div>
+
+    <iframe style="border-radius:12px; position: absolute; bottom: 10px; opacity: 0;" src="https://open.spotify.com/embed/track/2SId8K92718E29NIdGfO8Y?utm_source=generator&autoplay=1" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const btnSi = document.getElementById('btnSi');
+        let escala = 1;
+
+        // Script del Carrusel
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 3500);
+
+        // Lógica botón "No" (Trend TikTok)
+        btnNo.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+            
+            escala += 0.35;
+            btnSi.style.transform = `scale(${escala})`;
+        });
+
+        btnSi.addEventListener('click', () => {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('final').style.display = 'block';
+            // Al hacer clic, la música de Spotify debería activarse si el navegador la bloqueó
+        });
+
+        // Lluvia de corazones
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.opacity = Math.random();
+            document.getElementById('hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 400);
+    </script>
+</body>
+</html>
